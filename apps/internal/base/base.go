@@ -301,7 +301,7 @@ func (b Client) Account(homeAccountID string) shared.Account {
 	authParams.AuthorizationType = authority.AccountByID
 	authParams.HomeaccountID = homeAccountID
 	if s, ok := b.manager.(cache.Serializer); ok {
-		suggestedCacheKey := b.AuthParams.CacheKey(false)
+		suggestedCacheKey := authParams.CacheKey(false)
 		b.cacheAccessor.Replace(s, suggestedCacheKey)
 		defer b.cacheAccessor.Export(s, suggestedCacheKey)
 	}
